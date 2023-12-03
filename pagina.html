@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorteo de Nombres</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sorteo de Nombres</h1>
+  
+  <label for="nombre">Ingresa tu nombre:</label>
+  <input type="text" id="nombre" placeholder="Tu Nombre">
+  <button onclick="realizarSorteo()">Realizar Sorteo</button>
+
+  <div id="result"></div>
+
+  <script>
+    let nombres = ["Marcela", "Jesús", "Jesús Gabriel", "Joel", "Yeróm", "Alexa", "Mariana", "Víctor", "Evelyn"];
+    
+    function realizarSorteo() {
+      const inputNombre = document.getElementById('nombre');
+      const resultDiv = document.getElementById('result');
+      
+      if (inputNombre.value.trim() === '') {
+        resultDiv.innerText = 'Por favor, ingresa tu nombre.';
+        return;
+      }
+
+      // Filtrar el array de nombres para que no incluya el nombre ingresado
+      const nombresFiltrados = nombres.filter(nombre => nombre !== inputNombre.value.trim());
+
+      // Obtener un nombre aleatorio de los nombres restantes
+      const nombreGanador = nombresFiltrados[Math.floor(Math.random() * nombresFiltrados.length)];
+
+      resultDiv.innerText = `¡Felicidades, ${inputNombre.value.trim()}! Tu compañero(a) es: ${nombreGanador}.`;
+    }
+  </script>
+</body>
+</html>
